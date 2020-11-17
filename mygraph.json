@@ -1,0 +1,24 @@
+{
+ "nodes": [
+  {
+   "title": "$x_i$",
+   "type": "variable",
+   "id": 0,
+   "x": 519.5,
+   "y": 100
+  },
+  {
+   "title": "new concept",
+   "type": "operation",
+   "id": 1,
+   "x": 519.5,
+   "y": 300
+  }
+ ],
+ "edges": [
+  {
+   "source": 1,
+   "target": 0
+  }
+ ]
+}
