@@ -80,11 +80,9 @@ export function plot_graph(graph_filename) {
                 return { x: d.x, y: d.y };
             })
             .on("drag", function (args) {
-                console.log("drag");
                 thisGraph.dragmove.call(thisGraph, args);
             })
             .on("dragend", function () {
-                console.log("drag end");
             });
 
         // 
@@ -119,13 +117,11 @@ export function plot_graph(graph_filename) {
         //this.state.justScaleTransGraph = true;
         d3.select("." + consts.graphClass)
             .attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
-        console.log("zoomed");
     };
 
     // mousedown on main svg
     Graph.prototype.svgMouseDown = function () {
         this.state.graphMouseDown = true;
-        console.log("SVG Mouse down");
     };
 
     // Mousedown on nodes
@@ -133,14 +129,47 @@ export function plot_graph(graph_filename) {
     Graph.prototype.NodesMouseDown = function (d3node, d) {
         // Prevent the signal to be propagated to the parent svg
         d3.event.stopPropagation();
-
-
-        console.log("Nodes Mouse down");
     };
 
 
     Graph.prototype.updateGraph = function () {
         var thisGraph = this;
+
+        ///////////// Create the edges
+        thisGraph.paths = thisGraph.paths.data(thisGraph.edges, function (d) {
+            return String(d.source.id) + "+" + String(d.target.id);
+        });
+        var paths = thisGraph.paths;
+        // update existing paths
+        paths.style('marker-mid', 'url(#end-arrow)')
+            .attr("d", function (d) {
+                var sx = d.source.x + d.source.width/2.;
+                var sy = d.source.y + d.source.height/2.;
+                var dx = d.target.x + d.target.width/2.;
+                var dy = d.target.y + d.target.height/2.;  
+                var mx = (sx + dx) / 2.;              
+                var my = (sy + dy) / 2.;
+                return "M" + sx + "," + sy + " L" + mx + "," + my + " L" + dx + "," + dy;
+            });
+
+        paths.enter()
+            .append("path")
+            .attr("id", "path1")
+            .style('marker-end', 'url(#end-arrow)')
+            .classed("link", true)
+            .attr("d", function (d) {
+                var sx = d.source.x + d.source.width/2.;
+                var sy = d.source.y + d.source.height/2.;
+                var dx = d.target.x + d.target.width/2.;
+                var dy = d.target.y + d.target.height/2.;  
+                var mx = (sx + dx) / 2.;              
+                var my = (sy + dy) / 2.;
+                return "M" + sx + "," + sy + " L" + mx + "," + my + " L" + dx + "," + dy;
+            });
+
+        // remove old links
+        paths.exit().remove();
+
         ///////////// Create the variable nodes
         // Update the existing nodes
         thisGraph.variables = thisGraph.variables.data(thisGraph.variable_nodes, function (n) { return n.id; });
@@ -216,7 +245,7 @@ export function plot_graph(graph_filename) {
             .attr("text-anchor", "middle")
             .text(function (n) {
                 return n.title;
-            });            
+            });
 
         this.operations.exit().remove();
     };
@@ -227,7 +256,6 @@ export function plot_graph(graph_filename) {
         var x = window.innerWidth || docEl.clientWidth || bodyEl.clientWidth;
         var y = window.innerHeight || docEl.clientHeight || bodyEl.clientHeight;
         svg.attr("width", x).attr("height", y);
-        console.log("Resizing to ", x, " x ", y);
     };
 
 
@@ -289,22 +317,22 @@ export function plot_graph(graph_filename) {
     };
 
     // Handle the download button click
-    d3.select("#download-input").on("click", function(){
+    d3.select("#download-input").on("click", function () {
         var blob = window.Blob;
         var saveEdges = [];
-        graph.edges.forEach(function(val, i){
-          saveEdges.push({source: val.source.id, target: val.target.id});
+        graph.edges.forEach(function (val, i) {
+            saveEdges.push({ source: val.source.id, target: val.target.id });
         });
         var blob = new Blob([
-          window.JSON.stringify(
-            {"nodes": graph.nodes, "edges": saveEdges},
-            null,
-            ' '
-            )], 
-            {type: "text/plain;charset=utf-8"});
+            window.JSON.stringify(
+                { "nodes": graph.nodes, "edges": saveEdges },
+                null,
+                ' '
+            )],
+            { type: "text/plain;charset=utf-8" });
         saveAs(blob, "mygraph.json");
-      });
-  
+    });
+
 
 
 

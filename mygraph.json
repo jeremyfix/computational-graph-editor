@@ -4,43 +4,60 @@
    "title": "$X (64, 8)$",
    "type": "variable",
    "id": 0,
-   "x": 50,
-   "y": 50,
+   "x": -23,
+   "y": 296,
    "width": 150,
    "height": 50
   },
   {
-    "title": "$w_1 (31, 8)$",
-    "type": "variable",
-    "id": 1,
-    "x": 150,
-    "y": 0,
-    "width": 150,
-    "height": 50
-   },
-   {
-    "title": "$b_1 (31,)$",
-    "type": "variable",
-    "id": 2,
-    "x": 250,
-    "y": 0,
-    "width": 150,
-    "height": 50
-   },   
+   "title": "$w_1 (31, 8)$",
+   "type": "variable",
+   "id": 1,
+   "x": 97,
+   "y": 391,
+   "width": 150,
+   "height": 50
+  },
   {
-   "title": "new concept",
+   "title": "$b_1 (31,)$",
+   "type": "variable",
+   "id": 2,
+   "x": 294,
+   "y": 394,
+   "width": 150,
+   "height": 50
+  },
+  {
+   "title": "$w_1.X^T + b_1$",
    "type": "operation",
    "id": 3,
-   "x": 519.5,
-   "y": 300,
+   "x": 204.5,
+   "y": 295,
+   "width": 150,
+   "height": 50
+  },
+  {
+   "title": "$y (64, )$",
+   "type": "variable",
+   "id": 4,
+   "x": -19,
+   "y": 190,
    "width": 150,
    "height": 50
   }
  ],
  "edges": [
   {
+   "source": 0,
+   "target": 3
+  },
+  {
    "source": 1,
-   "target": 0
+   "target": 3
+  },
+  {
+   "source": 2,
+   "target": 3
   }
  ]
 }

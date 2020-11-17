@@ -1,17 +1,16 @@
-
-body{
+body {
     margin: 0;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-p{ 
-     text-align: center; 
-     overflow: overlay;
-     position: relative;
+p {
+    text-align: center;
+    overflow: overlay;
+    position: relative;
 }
 
-body{
+body {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -21,7 +20,7 @@ body{
     background-color: rgb(248, 248, 248)
 }
 
-#toolbox{
+#toolbox {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -33,21 +32,26 @@ body{
     z-index: 5;
 }
 
-#toolbox input{
+#toolbox input {
     width: 30px;
     opacity: 0.4;
 }
-#toolbox input:hover{
+
+#toolbox input:hover {
     opacity: 1;
     cursor: pointer;
 }
 
-#hidden-file-upload{
+#hidden-file-upload {
     display: none;
 }
 
-#download-input{
+#download-input {
     margin: 0 0.5em;
+}
+
+marker {
+    fill: #333;
 }
 
 g.variable-node rect {
@@ -55,26 +59,32 @@ g.variable-node rect {
     stroke: #333;
     stroke-width: 2px;
 }
+
 g.variable-node:hover rect {
     fill: #ffd698;
     stroke: #333;
     stroke-width: 2px;
 }
 
-
-
 g.operation-node rect {
     fill: #3aaefc;
     stroke: #333;
     stroke-width: 2px;
 }
+
 g.operation-node:hover rect {
     fill: #89d0ff;
     stroke: #333;
     stroke-width: 2px;
 }
 
+path.link {
+    fill: none;
+    stroke: #333;
+    stroke-width: 6px;
+    cursor: default;
+}
 
-.MathJax {
-    font-size: 2.3em;
-    }
+path.link.hidden {
+    stroke-width: 0;
+}
