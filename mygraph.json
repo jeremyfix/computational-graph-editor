@@ -1,18 +1,40 @@
 {
  "nodes": [
   {
-   "title": "$x_i$",
+   "title": "$X (64, 8)$",
    "type": "variable",
    "id": 0,
-   "x": 519.5,
-   "y": 100
+   "x": 50,
+   "y": 50,
+   "width": 150,
+   "height": 50
   },
+  {
+    "title": "$w_1 (31, 8)$",
+    "type": "variable",
+    "id": 1,
+    "x": 150,
+    "y": 0,
+    "width": 150,
+    "height": 50
+   },
+   {
+    "title": "$b_1 (31,)$",
+    "type": "variable",
+    "id": 2,
+    "x": 250,
+    "y": 0,
+    "width": 150,
+    "height": 50
+   },   
   {
    "title": "new concept",
    "type": "operation",
-   "id": 1,
+   "id": 3,
    "x": 519.5,
-   "y": 300
+   "y": 300,
+   "width": 150,
+   "height": 50
   }
  ],
  "edges": [
