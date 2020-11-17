@@ -141,30 +141,65 @@ export function plot_graph(graph_filename) {
         });
         var paths = thisGraph.paths;
         // update existing paths
-        paths.style('marker-mid', 'url(#end-arrow)')
-            .attr("d", function (d) {
-                var sx = d.source.x + d.source.width/2.;
-                var sy = d.source.y + d.source.height/2.;
-                var dx = d.target.x + d.target.width/2.;
-                var dy = d.target.y + d.target.height/2.;  
-                var mx = (sx + dx) / 2.;              
+        paths.select("path").style('marker-end', 'url(#end-arrow)')
+            .attr("d", function (e) {
+                var sx = e.source.x + e.source.width / 2.;
+                var sy = e.source.y + e.source.height / 2.;
+                var dx = e.target.x + e.target.width / 2.;
+                var dy = e.target.y + e.target.height / 2.;
+                var mx = (sx + dx) / 2.;
                 var my = (sy + dy) / 2.;
                 return "M" + sx + "," + sy + " L" + mx + "," + my + " L" + dx + "," + dy;
             });
+        paths.select(".label-holder")
+            .attr("transform", function (e) {
+                var sx = e.source.x + e.source.width / 2.;
+                var sy = e.source.y + e.source.height / 2.;
+                var dx = e.target.x + e.target.width / 2.;
+                var dy = e.target.y + e.target.height / 2.;
+                var mx = (sx + dx) / 2.;
+                var my = (sy + dy) / 2.;
+                return "translate("
+                    + mx + ","
+                    + my + ")";
+            });
 
-        paths.enter()
-            .append("path")
-            .attr("id", "path1")
+        var newPaths = paths.enter().append("g");
+        newPaths.append("path")
             .style('marker-end', 'url(#end-arrow)')
             .classed("link", true)
-            .attr("d", function (d) {
-                var sx = d.source.x + d.source.width/2.;
-                var sy = d.source.y + d.source.height/2.;
-                var dx = d.target.x + d.target.width/2.;
-                var dy = d.target.y + d.target.height/2.;  
-                var mx = (sx + dx) / 2.;              
+            .attr("d", function (e) {
+                var sx = e.source.x + e.source.width / 2.;
+                var sy = e.source.y + e.source.height / 2.;
+                var dx = e.target.x + e.target.width / 2.;
+                var dy = e.target.y + e.target.height / 2.;
+                var mx = (sx + dx) / 2.;
                 var my = (sy + dy) / 2.;
                 return "M" + sx + "," + sy + " L" + mx + "," + my + " L" + dx + "," + dy;
+            })
+
+        var edge_label = newPaths.append("g")
+            .attr("class", "label-holder")
+            .attr("transform", function (e) {
+                var sx = e.source.x + e.source.width / 2.;
+                var sy = e.source.y + e.source.height / 2.;
+                var dx = e.target.x + e.target.width / 2.;
+                var dy = e.target.y + e.target.height / 2.;
+                var mx = (sx + dx) / 2.;
+                var my = (sy + dy) / 2.;
+                return "translate("
+                    + mx + ","
+                    + my + ")";
+            });
+        edge_label.append("circle")
+            .attr("r", String(15));
+        edge_label.append("g")
+            .attr("class", "title")
+
+            .append("text")
+            .attr("text-anchor", "middle")
+            .text(function (e) {
+                return e.label;
             });
 
         // remove old links
@@ -206,7 +241,7 @@ export function plot_graph(graph_filename) {
                 return n.title;
             });
 
-        this.variables.exit().remove();
+        thisGraph.variables.exit().remove();
 
         ///////////// Create the operation nodes
         // Update the existing nodes
@@ -270,7 +305,8 @@ export function plot_graph(graph_filename) {
             edges.forEach(function (e, i) {
                 edges[i] = {
                     source: nodes.filter(function (n) { return n.id == e.source; })[0],
-                    target: nodes.filter(function (n) { return n.id == e.target; })[0]
+                    target: nodes.filter(function (n) { return n.id == e.target; })[0],
+                    label: e.label
                 };
             });
             graph = new Graph(svg, nodes, edges);
@@ -376,10 +412,13 @@ export function plot_graph(graph_filename) {
                     svg.selectAll('.title').each(function () {
                         var svg_title = d3.select(this).select('svg');
                         //console.log(svg_title.node().getBBox());
-                        var bbox = svg_title.node().getBoundingClientRect();
-                        //console.log(svg_title.node().getBoundingClientRect());
-                        d3.select(this).select("g")
-                            .attr("transform", "translate(" + -bbox.width / 2. + ", " + -bbox.height / 2. + ")");
+                        if(svg_title.node()) {
+                            var bbox = svg_title.node().getBoundingClientRect();
+
+                            //console.log(svg_title.node().getBoundingClientRect());
+                            d3.select(this).select("g")
+                                .attr("transform", "translate(" + -bbox.width / 2. + ", " + -bbox.height / 2. + ")");
+                        }
                     });
                 }, 500);
             });

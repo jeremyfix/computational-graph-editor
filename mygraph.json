@@ -28,7 +28,7 @@
    "height": 50
   },
   {
-   "title": "$w_1.X^T + b_1$",
+   "title": "$x_1.x_2^T + x_3^T$",
    "type": "operation",
    "id": 3,
    "x": 204.5,
@@ -44,20 +44,37 @@
    "y": 190,
    "width": 150,
    "height": 50
+  },
+  {
+   "title": "$y_1 (64, 31)$",
+   "type": "variable",
+   "id": 5,
+   "x": 413.5,
+   "y": 295,
+   "width": 150,
+   "height": 50
   }
  ],
  "edges": [
   {
    "source": 0,
-   "target": 3
+   "target": 3,
+   "label": "$x_1$"
   },
   {
    "source": 1,
-   "target": 3
+   "target": 3,
+   "label": "$x_2$"
   },
   {
    "source": 2,
-   "target": 3
-  }
+   "target": 3,
+   "label": "$x_3$"
+  } ,
+  {
+    "source": 3,
+    "target": 5,
+    "label": ""
+   } 
  ]
 }
