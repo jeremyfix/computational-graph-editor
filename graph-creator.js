@@ -357,7 +357,11 @@ export function plot_graph(graph_filename) {
         var blob = window.Blob;
         var saveEdges = [];
         graph.edges.forEach(function (val, i) {
-            saveEdges.push({ source: val.source.id, target: val.target.id });
+            saveEdges.push({ 
+                source: val.source.id, 
+                target: val.target.id,
+                label: val.label
+            });
         });
         var blob = new Blob([
             window.JSON.stringify(
