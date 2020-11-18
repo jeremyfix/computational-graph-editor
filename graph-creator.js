@@ -2,13 +2,7 @@ export function plot_graph(graph_filename) {
     "use strict";
 
     var consts = {
-        selectedClass: "selected",
-        connectClass: "connect-node",
         graphClass: "graph",
-        activeEditId: "active-editing",
-        BACKSPACE_KEY: 8,
-        DELETE_KEY: 46,
-        ENTER_KEY: 13,
         variableClass: "variable-node",
         VARIABLE_NODE_RX: 15,
         VARIABLE_NODE_RY: 15,
@@ -23,7 +17,6 @@ export function plot_graph(graph_filename) {
 
         var thisGraph = this;
 
-        thisGraph.node_ctr = nodes.length + 1;
         thisGraph.nodes = nodes;
         thisGraph.variable_nodes = nodes.filter(function (n) {
             return n.type == "variable";
@@ -44,29 +37,6 @@ export function plot_graph(graph_filename) {
             shiftNodeDrag: false,
             selectedText: null
         };
-
-        // define arrow markers for graph links
-        var defs = svg.append('svg:defs');
-        defs.append('svg:marker')
-            .attr('id', 'end-arrow')
-            .attr('viewBox', '0 -5 10 10')
-            .attr('refX', "32")
-            .attr('markerWidth', 3.5)
-            .attr('markerHeight', 3.5)
-            .attr('orient', 'auto')
-            .append('svg:path')
-            .attr('d', 'M0,-5L10,0L0,5');
-
-        // define arrow markers for leading arrow
-        defs.append('svg:marker')
-            .attr('id', 'mark-end-arrow')
-            .attr('viewBox', '0 -5 10 10')
-            .attr('refX', 7)
-            .attr('markerWidth', 3.5)
-            .attr('markerHeight', 3.5)
-            .attr('orient', 'auto')
-            .append('svg:path')
-            .attr('d', 'M0,-5L10,0L0,5');
 
         thisGraph.svgG = svg.append("g")
             .classed(consts.graphClass, true);
@@ -141,7 +111,7 @@ export function plot_graph(graph_filename) {
         });
         var paths = thisGraph.paths;
         // update existing paths
-        paths.select("path").style('marker-end', 'url(#end-arrow)')
+        paths.select("path")
             .attr("d", function (e) {
                 var sx = e.source.x + e.source.width / 2.;
                 var sy = e.source.y + e.source.height / 2.;
@@ -166,7 +136,6 @@ export function plot_graph(graph_filename) {
 
         var newPaths = paths.enter().append("g");
         newPaths.append("path")
-            .style('marker-end', 'url(#end-arrow)')
             .classed("link", true)
             .attr("d", function (e) {
                 var sx = e.source.x + e.source.width / 2.;
