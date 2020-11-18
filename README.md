@@ -6,6 +6,8 @@ Interactive tool for navigating within a computational graph. Written in javascr
 
 Follow this [link](https://jeremyfix.github.io/computational-graph-editor/index.html)
 
+![Example](https://github.com/jeremyfix/computation-graph-editor/blob/main/snapshot.png)
+
 **Interaction**
 
 - mouse click then drag to pan/tilt the display
