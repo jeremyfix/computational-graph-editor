@@ -161,7 +161,15 @@ export function plot_graph(graph_filename) {
                     + my + ")";
             });
         edge_label.append("circle")
-            .attr("r", String(15));
+            .attr("r", function (e) {
+                // Little trick to hid the nodes without label
+                // I was not sure there was possibility to prevent the creation
+                // of the circle under that condition
+                if (e.label == "")
+                    return "0";
+                else
+                    return "15";
+            });
         edge_label.append("g")
             .attr("class", "title")
 
@@ -326,8 +334,8 @@ export function plot_graph(graph_filename) {
         var blob = window.Blob;
         var saveEdges = [];
         graph.edges.forEach(function (val, i) {
-            saveEdges.push({ 
-                source: val.source.id, 
+            saveEdges.push({
+                source: val.source.id,
                 target: val.target.id,
                 label: val.label
             });
@@ -385,7 +393,7 @@ export function plot_graph(graph_filename) {
                     svg.selectAll('.title').each(function () {
                         var svg_title = d3.select(this).select('svg');
                         //console.log(svg_title.node().getBBox());
-                        if(svg_title.node()) {
+                        if (svg_title.node()) {
                             var bbox = svg_title.node().getBoundingClientRect();
 
                             //console.log(svg_title.node().getBoundingClientRect());
