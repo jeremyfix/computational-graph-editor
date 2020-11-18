@@ -13,7 +13,7 @@ export function plot_graph(graph_filename) {
 
     ////////////////////////////////////////////////
     // Graph object
-    var Graph = function (svg, nodes, edges) {
+    var Graph = function (svg, nodes, edges, translate_x, translate_y, scale) {
 
         var thisGraph = this;
 
@@ -39,7 +39,8 @@ export function plot_graph(graph_filename) {
         };
 
         thisGraph.svgG = svg.append("g")
-            .classed(consts.graphClass, true);
+            .classed(consts.graphClass, true)
+            .attr("transform", "translate(" + translate_x +  "," + translate_y + ") scale(" + scale + ")");
 
         thisGraph.paths = thisGraph.svgG.append("g").selectAll("g");
         thisGraph.variables = thisGraph.svgG.append("g").selectAll("g");
@@ -82,6 +83,13 @@ export function plot_graph(graph_filename) {
         d.y += d3.event.dy;
         thisGraph.updateGraph();
     }
+
+    Graph.prototype.set_transform = function (translate_x, translate_y, scale) {
+        //this.state.justScaleTransGraph = true;
+        d3.select("." + consts.graphClass)
+            .attr("transform", "translate(" + translate_x +  "," + translate_y + ") scale(" + scale + ")");
+		this.updateGraph();
+    };
 
     Graph.prototype.zoomed = function () {
         //this.state.justScaleTransGraph = true;
@@ -277,6 +285,7 @@ export function plot_graph(graph_filename) {
         var graph;
         try {
             var jsonObj = JSON.parse(graphstr);
+			var transform = jsonObj.transform;
             var nodes = jsonObj.nodes
             var edges = jsonObj.edges;
             edges.forEach(function (e, i) {
@@ -286,7 +295,7 @@ export function plot_graph(graph_filename) {
                     label: e.label
                 };
             });
-            graph = new Graph(svg, nodes, edges);
+            graph = new Graph(svg, nodes, edges, transform.translate_x, transform.translate_y, transform.scale);
         } catch (err) {
             window.alert("Error parsing uploaded file\nerror message: " + err.message);
             return;

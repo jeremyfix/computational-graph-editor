@@ -1,80 +1,85 @@
 {
- "nodes": [
-  {
-   "title": "$X (64, 8)$",
-   "type": "variable",
-   "id": 0,
-   "x": -23,
-   "y": 296,
-   "width": 150,
-   "height": 50
-  },
-  {
-   "title": "$w_1 (31, 8)$",
-   "type": "variable",
-   "id": 1,
-   "x": 97,
-   "y": 391,
-   "width": 150,
-   "height": 50
-  },
-  {
-   "title": "$b_1 (31,)$",
-   "type": "variable",
-   "id": 2,
-   "x": 294,
-   "y": 394,
-   "width": 150,
-   "height": 50
-  },
-  {
-   "title": "$x_1.x_2^T + x_3^T$",
-   "type": "operation",
-   "id": 3,
-   "x": 204.5,
-   "y": 295,
-   "width": 150,
-   "height": 50
-  },
-  {
-   "title": "$y (64, )$",
-   "type": "variable",
-   "id": 4,
-   "x": -19,
-   "y": 190,
-   "width": 150,
-   "height": 50
-  },
-  {
-   "title": "$y_1 (64, 31)$",
-   "type": "variable",
-   "id": 5,
-   "x": 413.5,
-   "y": 295,
-   "width": 150,
-   "height": 50
-  }
- ],
- "edges": [
-  {
-   "source": 0,
-   "target": 3,
-   "label": "$x_1$"
-  },
-  {
-   "source": 1,
-   "target": 3,
-   "label": "$x_2$"
-  },
-  {
-   "source": 2,
-   "target": 3,
-   "label": "$x_3$"
-  } ,
-  {
-    "source": 3,
-    "target": 5,
-    "label": ""
-   } 
- ]
+	"transform": {
+		"translate_x": 200,
+		"translate_y": -292,
+		"scale" : 1.0
+	},
+	"nodes": [
+		{
+			"title": "$X (64, 8)$",
+			"type": "variable",
+			"id": 0,
+			"x": -23,
+			"y": 296,
+			"width": 150,
+			"height": 50
+		},
+		{
+			"title": "$w_1 (31, 8)$",
+			"type": "variable",
+			"id": 1,
+			"x": 97,
+			"y": 391,
+			"width": 150,
+			"height": 50
+		},
+		{
+			"title": "$b_1 (31,)$",
+			"type": "variable",
+			"id": 2,
+			"x": 294,
+			"y": 394,
+			"width": 150,
+			"height": 50
+		},
+		{
+			"title": "$x_1.x_2^T + x_3^T$",
+			"type": "operation",
+			"id": 3,
+			"x": 204.5,
+			"y": 295,
+			"width": 150,
+			"height": 50
+		},
+		{
+			"title": "$y (64, )$",
+			"type": "variable",
+			"id": 4,
+			"x": -19,
+			"y": 190,
+			"width": 150,
+			"height": 50
+		},
+		{
+			"title": "$y_1 (64, 31)$",
+			"type": "variable",
+			"id": 5,
+			"x": 413.5,
+			"y": 295,
+			"width": 150,
+			"height": 50
+		}
+	],
+	"edges": [
+		{
+			"source": 0,
+			"target": 3,
+			"label": "$x_1$"
+		},
+		{
+			"source": 1,
+			"target": 3,
+			"label": "$x_2$"
+		},
+		{
+			"source": 2,
+			"target": 3,
+			"label": "$x_3$"
+		} ,
+		{
+			"source": 3,
+			"target": 5,
+			"label": ""
+		} 
+	]
 }
