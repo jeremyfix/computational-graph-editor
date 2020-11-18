@@ -29,8 +29,12 @@
 		<div id="toolbox">
 			<!-- <input type="file" id="hidden-file-upload">
 			<input type="image" id="upload-input" title="upload graph" src="upload-icon.png" alt="upload graph"> -->
-			<input type="image" id="download-input" title="download graph" src="download-icon.png" alt="download graph">
-			<input type="image" id="delete-graph" title="delete graph" src="trash-icon.png" alt="delete graph">
+			<input type="image" id="download-input" title="download graph"
+				src="https://raw.githubusercontent.com/jeremyfix/computational-graph-editor/main/download-icon.png"
+				alt="download graph">
+			<input type="image" id="delete-graph" title="delete graph"
+				src="https://raw.githubusercontent.com/jeremyfix/computational-graph-editor/main/trash-icon.png"
+				alt="delete graph">
 		</div>
 	</div>
 
@@ -40,7 +44,7 @@
 	<script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
 	<script src="//cdn.jsdelivr.net/filesaver.js/0.1/FileSaver.min.js"></script>
 	<script>
-		import('./graph-creator.js').then(
+		import('//cdn.jsdelivr.net/gh/jeremyfix/computational-graph-editor@main/graph-creator.js').then(
 			module =>
 				module.plot_graph(
 					"mygraph.json"
@@ -48,6 +52,8 @@
 		);
 
 	</script>
+
+
 </body>
 
 </html>
