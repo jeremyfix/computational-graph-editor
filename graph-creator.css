@@ -54,25 +54,25 @@ marker {
     fill: #333;
 }
 
-g.variable-node rect {
+g.variable-node>rect {
     fill: #fcae3a;
     stroke: #333;
     stroke-width: 2px;
 }
 
-g.variable-node:hover rect {
+g.variable-node:hover>rect {
     fill: #ffd698;
     stroke: #333;
     stroke-width: 2px;
 }
 
-g.operation-node rect {
+g.operation-node>rect {
     fill: #3aaefc;
     stroke: #333;
     stroke-width: 2px;
 }
 
-g.operation-node:hover rect {
+g.operation-node:hover>rect {
     fill: #89d0ff;
     stroke: #333;
     stroke-width: 2px;
