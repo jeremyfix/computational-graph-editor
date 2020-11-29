@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" href="graph-creator.css" />
+</head>
+
+<body>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_SVG">
+		</script>
+
+
+	<script type="text/x-mathjax-config">
+
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ["\\(", "\\)"]],
+				processEscapes: true,
+				displayAlign: "left"
+            }
+        });
+	
+  </script>
+
+	<div id="graph">
+		<div id="toolbox">
+			<!-- <input type="file" id="hidden-file-upload">
+			<input type="image" id="upload-input" title="upload graph" src="upload-icon.png" alt="upload graph"> -->
+			<input type="image" id="download-input" title="download graph"
+				src="https://raw.githubusercontent.com/jeremyfix/computational-graph-editor/main/download-icon.png"
+				alt="download graph">
+			<input type="image" id="delete-graph" title="delete graph"
+				src="https://raw.githubusercontent.com/jeremyfix/computational-graph-editor/main/trash-icon.png"
+				alt="delete graph">
+		</div>
+	</div>
+
+	<script>
+	</script>
+
+	<script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
+	<script src="//cdn.jsdelivr.net/filesaver.js/0.1/FileSaver.min.js"></script>
+	<script>
+		import('./graph-creator.js').then(
+			module =>
+				module.plot_graph(
+					"mygraph.json"
+				)
+		);
+
+	</script>
+
+
+</body>
+
+</html>

@@ -13,13 +13,13 @@ Follow this [link](https://jeremyfix.github.io/computational-graph-editor/index.
 - mouse click then drag to pan/tilt the display
 - mouse click on a node then drag to move the node
 - mouse wheel to zoom-in/zoom-out
-- mouse over a node to highligh it
+- mouse over a node to highlight it
 
 **Run**
 
 	python -m SimpleHTTPServer 8000
 
-Then run a browser to [http://localhost:8000](http://localhost:8000)
+Then run a browser to [http://localhost:8000/test.html](http://localhost:8000/test.html)
 
 
 **Creating your own graph**
@@ -39,6 +39,7 @@ An edge has :
 - a source node id
 - a target node id
 - a label to be display along the edge
+
 
 
 **Disclaimer**
